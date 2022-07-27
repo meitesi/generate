@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Meitesi\\Generate\\ServiceProvider"
+                "Meitesi\\Generate\\GenerateServiceProvider"
             ]
         }
     }
