@@ -1,0 +1,29 @@
+{
+    "name": "meitesi\/generate",
+    "description": "命令行代码生成器",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "luyuan",
+            "email": "758899293@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.0"
+    },
+    "require-dev": {
+        "laravel/laravel": "9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Meitesi\\Generate\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Meitesi\\Generate\\ServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Http\Controllers\{{filePath}};
+
+
+use App\Exceptions\BusinessException;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\{{filePath}}\{{modelName}}\{{modelName}}CreateRequest;
+use App\Http\Requests\{{filePath}}\{{modelName}}\{{modelName}}UpdateRequest;
+use App\Http\Requests\{{filePath}}\{{modelName}}\{{modelName}}ShowRequest;
+use App\Http\Requests\{{filePath}}\{{modelName}}\{{modelName}}DeleteRequest;
+use App\Services\{{filePath}}\{{modelName}}Service;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+class {{modelName}}Controller extends Controller
+{
+    /**
+     * 列表
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function index(Request $request): JsonResponse
+    {
+        $page = {{modelName}}Service::getInstance()->index($request);
+        return $this->successPaginate($page);
+    }
+
+    /**
+     * 创建
+     * @param {{modelName}}CreateRequest $request
+     * @return JsonResponse
+     * @throws BusinessException
+     */
+    public function create({{modelName}}CreateRequest $request): JsonResponse
+    {
+        {{modelName}}Service::getInstance()->create($request->only([]));
+        return $this->success();
+    }
+
+    /**
+     * 详情
+     * @param {{modelName}}ShowRequest $request
+     * @return JsonResponse
+     */
+    public function show({{modelName}}ShowRequest $request): JsonResponse
+    {
+        ${{modelNameSingularLowerCase}} = {{modelName}}Service::getInstance()->show($request->id);
+        return $this->success(${{modelNameSingularLowerCase}});
+    }
+
+    /**
+     * 更新
+     * @param {{modelName}}UpdateRequest $request
+     * @return JsonResponse
+     * @throws BusinessException
+     */
+    public function update({{modelName}}UpdateRequest $request): JsonResponse
+    {
+        {{modelName}}Service::getInstance()->update($request->id,$request->only([]));
+        return $this->success();
+    }
+
+    /**
+     * 删除
+     * @param {{modelName}}DeleteRequest $request
+     * @return JsonResponse
+     * @throws BusinessException
+     */
+    public function delete({{modelName}}DeleteRequest $request): JsonResponse
+    {
+        {{modelName}}Service::getInstance()->delete($request->id);
+        return $this->success();
+    }
+
+}

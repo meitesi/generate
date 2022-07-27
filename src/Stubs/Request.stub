@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Http\Requests\{{filePath}}\{{modelName}};
+
+use Carbon\Carbon;
+use App\Http\Requests\BaseRequest;
+
+{{property}}
+class {{modelName}}{{method}}Request extends BaseRequest
+{
+
+    public function rules()
+    {
+        return [
+
+        ];
+    }
+}

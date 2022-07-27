@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models;
+
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+{{property}}
+class {{modelName}} extends BaseModel
+{
+    use HasFactory;
+
+    protected $table = "{{tableName}}";
+
+    protected $fillable = [{{fillAble}}];
+}

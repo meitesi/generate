@@ -1,0 +1,84 @@
+<?php
+
+namespace App\Services\{{filePath}};
+
+use App\Exceptions\BusinessException;
+use App\Helpers\ResponseEnum;
+use App\Models\{{modelName}};
+use App\Models\BaseModel;
+use App\Services\BaseService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Request;
+
+class {{modelName}}Service extends BaseService
+{
+    /**
+     * 列表
+     * @param Request $request
+     * @return LengthAwarePaginator
+     */
+    public function index(Request $request): LengthAwarePaginator
+    {
+        return {{modelName}}::query()->filter($request->all())->paginate(BaseModel::PAGE_SIZE);
+    }
+
+    /**
+     * 详情
+     * @param int $id
+     * @return BaseModel
+     */
+    public function show(int $id): BaseModel
+    {
+        return {{modelName}}::query()->findOrFail($id);
+    }
+
+    /**
+     * 创建
+     * @param array $params
+     * @return bool
+     * @throws BusinessException
+     */
+    public function create(array $params): bool
+    {
+        ${{modelNameSingularLowerCase}} = {{modelName}}::create($params);
+        if (!${{modelNameSingularLowerCase}}) {
+            $this->throwBusinessException(ResponseEnum::HTTP_ERROR, '创建失败');
+        }
+        return true;
+    }
+
+    /**
+     * 更新
+     * @param int $id
+     * @param array $params
+     * @return bool
+     * @throws BusinessException
+     */
+    public function update(int $id, array $params): bool
+    {
+        ${{modelNameSingularLowerCase}} = {{modelName}}::query()->findOrFail($id);
+        foreach ($params as $key => $value) {
+            ${{modelNameSingularLowerCase}}->$key = $value;
+        }
+        if (!${{modelNameSingularLowerCase}}->save()) {
+            $this->throwBusinessException(ResponseEnum::HTTP_ERROR, '更新失败');
+        }
+        return true;
+    }
+
+    /**
+     * 删除
+     * @param int $id
+     * @return bool
+     * @throws BusinessException
+     */
+    public function delete(int $id): bool
+    {
+        ${{modelNameSingularLowerCase}} = {{modelName}}::query()->findOrFail($id);
+        if (!${{modelNameSingularLowerCase}}->delete()) {
+            $this->throwBusinessException(ResponseEnum::HTTP_ERROR, '删除失败');
+        }
+        return true;
+    }
+
+}

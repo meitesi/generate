@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models\Filters;
+
+use EloquentFilter\ModelFilter;
+
+class {{modelName}}Filter extends ModelFilter
+{
+    public $relations = [];
+
+    // TODO 搜索条件 可自行修改
+    public function name($value)
+    {
+        if(!empty($value)){
+            return $this->where('name', 'like', '%'.$value.'%');
+        }
+    }
+
+
+    public function order($value)
+    {
+        if ($value =='desc') {
+            return $this->orderByDesc('created_at');
+        }
+        return $this->orderBy('created_at');
+    }
+
+    public function setup()
+    {
+        // 如果没有传 order，默认 倒序
+        if (!$this->input('order'))  {
+            $this->push('order', 'desc');
+        }
+    }
+}

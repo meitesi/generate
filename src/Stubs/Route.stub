@@ -1,0 +1,12 @@
+Route::controller(App\Http\Controllers\{{prefix}}\{{routeName}}Controller::class)->prefix('{{prefixSnake}}')->group(function (Router $router){
+    //列表
+    $router->get("index","index")->name("index");
+    //详情
+    $router->get("show","show")->name("show");
+    //创建
+    $router->post("create","create")->name("create");
+    //更新
+    $router->post("update","update")->name("update");
+    //删除
+    $router->post("delete","delete")->name("delete");
+});
