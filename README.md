@@ -1,28 +1,22 @@
-<h1 align="center"> generate </h1>
+<h1 align="center"> laravel </h1>
 
 <p align="center"> 命令行代码生成器.</p>
 
 
-## Installing
+## 安装
 
 ```shell
-$ composer require meitesi/generate -vvv
+composer require meitesi/generate 
 ```
 
-## Usage
+## 发布文件
+
+```shell
+php artisan vendor:publish --tag=public --force 
+```
+
+
+## 使用
 
 TODO
 
-## Contributing
-
-You can contribute in one of three ways:
-
-1. File bug reports using the [issue tracker](https://github.com/meitesi/generate/issues).
-2. Answer questions or fix bugs on the [issue tracker](https://github.com/meitesi/generate/issues).
-3. Contribute new features or update the wiki.
-
-_The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
-
-## License
-
-MIT
