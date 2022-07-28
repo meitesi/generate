@@ -376,6 +376,7 @@ class Gen extends Command
     }
 
     /**
+     *
      * 处理字段默认值
      * @param $fieldType
      * @return int|string|null
