@@ -350,17 +350,14 @@ class Gen extends Command
         do {
             $str='$table->';
             $column = $this->ask('字段名');
-            $type = $this->choice('字段类型', ['integer', 'string','decimal','tinyInteger','text','timestamp']);
-            if ($type=='decimal') {
-                $decimal = $this->ask('保留小数位',2);
-                $str.= $type.'(\''.$column.'\','.$decimal.')->';
+            $type = $this->choice('字段类型', ['integer', 'string','char','decimal','tinyInteger','text','timestamp']);
+            $str.= $type.'(\''.$column.'\')->';
+            if (in_array($type,['text','timestamp'])) {
+                $str.='nullable()->';
             }else{
-                $str.= $type.'(\''.$column.'\')->';
-            }
-            $nullable = $this->confirm('字段可空');
-            $nullable = $nullable?'true':'false';
-            $str.='nullable('.$nullable.')->';
-            if (!in_array($type,['text','timestamp'])) {
+                $nullable = $this->confirm('字段可空');
+                $nullable = $nullable?'true':'false';
+                $str.='nullable('.$nullable.')->';
                 $default = $this->ask('字段默认值',$this->getDefault($type));
                 $str.='default('.$default.')->';
             }
@@ -387,7 +384,7 @@ class Gen extends Command
     {
         if (in_array($fieldType,["integer", "decimal","tinyInteger"])) {
             return '0';
-        }elseif($fieldType=='string'){
+        }elseif(in_array($fieldType,['string','char'])){
             return '""';
         }
         return 'null';
