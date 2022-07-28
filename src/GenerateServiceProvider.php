@@ -27,16 +27,12 @@ class GenerateServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerGenerator();
-    }
-
-    private function registerGenerator()
-    {
-        $this->app->singleton('command.gen', function () {
+        $this->app->singleton('command.luyuan.gen', function () {
             return new Gen;
         });
-        $this->commands(['command.gen']);
+        $this->commands(['command.luyuan.gen']);
     }
+
 
     /**
      * Get the services provided by the provider.
@@ -45,7 +41,7 @@ class GenerateServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['command.gen'];
+        return ['command.luyuan.gen'];
     }
 
 }

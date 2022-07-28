@@ -9,7 +9,7 @@
 composer require meitesi/generate 
 ```
 
-## 发布文件
+## 发布模板文件
 
 ```shell
 php artisan vendor:publish --tag=public --force 
@@ -18,5 +18,5 @@ php artisan vendor:publish --tag=public --force
 
 ## 使用
 
-TODO
+`请自行修改模板文件`
 
